@@ -82,7 +82,7 @@ int main(int argc, char** argv){
     // cout << "No movies found with prefix "<<"<replace with prefix>" << endl;
     vector<string> v;
     for (string pre : prefixes) {
-        map<double, set<string>> pre_mp;
+        map<double, set<string>, greater<double>> pre_mp;
         bool inRange = false;
         for (const auto& [name, rating] : mp) {
             if (name.find(pre) == 0) {
