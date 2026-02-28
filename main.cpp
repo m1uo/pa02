@@ -3,18 +3,18 @@
 // Student name: 
 #include <iostream>
 #include <fstream>
-#include <map>
+// #include <map>
 #include <string>
 #include <ctime>
 #include <vector>
 #include <cstring>
 #include <algorithm>
 #include <limits.h>
-#include <iomanip>
-#include <set>
-#include <queue>
+#include <limits>
+// #include <iomanip>
+// #include <set>
+// #include <queue>
 #include <sstream>
-#include <functional>
 using namespace std;
 
 #include "utilities.h"
@@ -40,7 +40,7 @@ int main(int argc, char** argv){
     }
   
     // Create an object of a STL data-structure to store all the movies
-    map<string, double> mp;
+    vector<pair<string, double>> movies;
 
     
 
@@ -52,14 +52,16 @@ int main(int argc, char** argv){
             // to construct your Movie objects
             // cout << movieName << " has rating " << movieRating << endl;
             // insert elements into your data structure
-            mp[movieName] = movieRating;
+            movies.push_back(make_pair(movieName, movieRating));
         
     }
+
+    sort(movies.begin(), movies.end());
 
     movieFile.close();
 
     if (argc == 2){
-            for (const auto& [name, rating] : mp) {
+            for (const auto& [name, rating] : movies) {
                 cout << name << ", " << rating << '\n';
             }
             return 0;
@@ -85,9 +87,9 @@ int main(int argc, char** argv){
     // cout << "No movies found with prefix "<<"<replace with prefix>" << endl;
     vector<string> v;
     for (const string& pre : prefixes) {
-        auto it = mp.lower_bound(pre);
+        auto it = lower_bound(movies.begin(), movies.end(), make_pair(pre, -1.0));
         vector<pair<string, double>> matches;
-        while (it != mp.end() && it->first.rfind(pre, 0) == 0) {
+        while (it != movies.end() && it->first.compare(0, pre.size(), pre) == 0) {
             matches.push_back(*it);
             ++it;
         }
@@ -97,7 +99,7 @@ int main(int argc, char** argv){
             continue;
         }
 
-        sort(matches.begin(), matches.end(), compareMovies);
+        sort(matches.begin(), matches.end(), compare);
 
         std::ostringstream oss;
         oss << "Best movie with prefix " << pre << " is: " << matches[0].first

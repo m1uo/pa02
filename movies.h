@@ -4,7 +4,7 @@
 #include <string>
 #include <utility>
 
-bool compareMovies(const std::pair<std::string, double>& a,
+bool compare(const std::pair<std::string, double>& a,
                    const std::pair<std::string, double>& b);
 
 #endif
