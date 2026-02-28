@@ -94,8 +94,7 @@ int main(int argc, char** argv){
             }
         }
         if (!inRange) {
-            cout << "No movies found with prefix "<<"<replace with prefix>" << endl;
-            v.push_back("No movies found with prefix " + pre);
+            cout << "No movies found with prefix "<< pre;
             continue;
         }
         bool first = true;
