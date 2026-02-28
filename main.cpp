@@ -81,33 +81,28 @@ int main(int argc, char** argv){
     //  If no movie with that prefix exists print the following message
     // cout << "No movies found with prefix "<<"<replace with prefix>" << endl;
     vector<string> v;
-    for (string pre : prefixes) {
-        map<double, set<string>, greater<double>> pre_mp;
-        bool inRange = false;
-        for (const auto& [name, rating] : mp) {
-            if (name.find(pre) == 0) {
-                pre_mp[rating].insert(name);
-                inRange = true;
-            }
-            else if (inRange) {
-                break;
-            }
+    for (const string& pre : prefixes) {
+        auto it = mp.lower_bound(pre);
+        vector<pair<string, double>> matches;
+        while (it != mp.end() && it->first.rfind(pre, 0) == 0) {
+            matches.push_back(*it);
+            ++it;
         }
-        if (!inRange) {
-            cout << "No movies found with prefix "<< pre << endl;
+
+        if (matches.empty()) {
+            cout << "No movies found with prefix " << pre << endl;
             continue;
         }
-        bool first = true;
-        for (const auto& [rating,names] : pre_mp) {
-            for (string name: names) {
-                if (first) {
-                    std::ostringstream oss;
-                    oss << "Best movie with prefix " << pre << " is: " << name << " with rating " << rating;
-                    v.push_back(oss.str());
-                    first = false;
-                }
-                cout << name << ", " << rating << endl;
-            }
+
+        sort(matches.begin(), matches.end(), compareMovies);
+
+        std::ostringstream oss;
+        oss << "Best movie with prefix " << pre << " is: " << matches[0].first
+            << " with rating " << matches[0].second;
+        v.push_back(oss.str());
+
+        for (const auto& [name, rating] : matches) {
+            cout << name << ", " << rating << endl;
         }
         cout << endl;
     }

@@ -1,6 +1,9 @@
-// #include "movies.h"
+#include "movies.h"
 
-
-// bool Compare::operator()(const pair<string, double>& a, const pair<string, double>& b) const {
-//     return a.second < b.second;
-// }
+bool compareMovies(const std::pair<std::string, double>& a,
+                   const std::pair<std::string, double>& b) {
+    if (a.second != b.second) {
+        return a.second > b.second;
+    }
+    return a.first < b.first;
+}

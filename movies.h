@@ -1,6 +1,10 @@
-// #include <string>
-// using namespace std;
+#ifndef MOVIES_H
+#define MOVIES_H
 
-// struct Compare {
-//     bool operator()(const pair<string, double>& a, const pair<string, double>& b) const;
-// };
+#include <string>
+#include <utility>
+
+bool compareMovies(const std::pair<std::string, double>& a,
+                   const std::pair<std::string, double>& b);
+
+#endif
