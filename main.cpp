@@ -23,6 +23,9 @@ using namespace std;
 bool parseLine(string &line, string &movieName, double &movieRating);
 
 int main(int argc, char** argv){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     if (argc < 2){
         cerr << "Not enough arguments provided (need at least 1 argument)." << endl;
         cerr << "Usage: " << argv[ 0 ] << " moviesFilename prefixFilename " << endl;
@@ -57,7 +60,7 @@ int main(int argc, char** argv){
 
     if (argc == 2){
             for (const auto& [name, rating] : mp) {
-                cout << name << ", " << rating << endl;
+                cout << name << ", " << rating << '\n';
             }
             return 0;
     }
@@ -90,7 +93,7 @@ int main(int argc, char** argv){
         }
 
         if (matches.empty()) {
-            cout << "No movies found with prefix " << pre << endl;
+            cout << "No movies found with prefix " << pre << '\n';
             continue;
         }
 
@@ -102,16 +105,16 @@ int main(int argc, char** argv){
         v.push_back(oss.str());
 
         for (const auto& [name, rating] : matches) {
-            cout << name << ", " << rating << endl;
+            cout << name << ", " << rating << '\n';
         }
-        cout << endl;
+        cout << '\n';
     }
 
     //  For each prefix,
     //  Print the highest rated movie with that prefix if it exists.
     // cout << "Best movie with prefix " << "<replace with prefix>" << " is: " << "replace with movie name" << " with rating " << std::fixed << std::setprecision(1) << "replace with movie rating" << endl;
     for (string s : v) {
-        cout << s << endl;
+        cout << s << '\n';
     }
 
     return 0;
