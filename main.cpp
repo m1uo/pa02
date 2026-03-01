@@ -135,7 +135,7 @@ int main(int argc, char** argv){
         finding the range of titles is O(log n) Note: in absolute worst case, this 
             can be but most movie names are short and not too similar (l log n)
         scanning movies is O(k)
-        sorting movies is O(k)
+        sorting movies is O(k log k)
 
         There are m prefixes
         So the total time complexity is O(m(log n + k log k))
