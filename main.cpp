@@ -1,6 +1,6 @@
 // Winter'24
 // Instructor: Diba Mirza
-// Student name: 
+// Student name: Max Luo and George Tsirigotis
 #include <iostream>
 #include <fstream>
 // #include <map>
