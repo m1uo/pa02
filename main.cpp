@@ -140,6 +140,33 @@ int main(int argc, char** argv){
         There are m prefixes
         So the total time complexity is O(m(log n + k log k))
         * or O(m(l log n + k log k)) for worst case.
+    Timing:
+
+    bash time.sh
+        === input_20_random.csv ===
+        avg_real_ms 6.471327
+
+        === input_100_random.csv ===
+        avg_real_ms 6.667678
+
+        === input_1000_random.csv ===
+        avg_real_ms 7.713657
+
+        === input_76920_random.csv ===
+        avg_real_ms 86.216202
+
+        [maxluo@csilvm-08 pa02]$ bash time.sh
+        === input_20_random.csv ===
+        avg_real_ms 6.083347
+
+        === input_100_random.csv ===
+        avg_real_ms 6.229739
+
+        === input_1000_random.csv ===
+        avg_real_ms 7.742026
+
+        === input_76920_random.csv ===
+        avg_real_ms 86.012183
 
     3b)
     Space Complexity
