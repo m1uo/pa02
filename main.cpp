@@ -123,6 +123,50 @@ int main(int argc, char** argv){
 }
 
 /* Add your run time analysis for part 3 of the assignment here as commented block*/
+/*
+    Define:
+    n as number of movies
+    m as number of prefixes
+    k as maximum # of matches for a prefix
+
+    3a)
+    Time Complexity
+        For each prefix:
+        finding the range of titles is O(log n) Note: in absolute worst case, this 
+            can be but most movie names are short and not too similar (l log n)
+        scanning movies is O(k)
+        sorting movies is O(k)
+
+        There are m prefixes
+        So the total time complexity is O(m(log n + k log k))
+        * or O(m(l log n + k log k)) for worst case.
+
+    3b)
+    Space Complexity
+        The vector of movies is O(n), but not part of auxiliary space
+        The vector of prefixes is O(m), but not part of auxiliary space
+        The vector v (printing list) os O(m * l)
+        The match list is O(k * l)
+
+        So the total space complexity is O(l(k+m))
+    
+    3c)
+    Space/time complexity tradeoffs.
+    
+    Did you design your algorithm for a low time complexity, a low space complexity, or both? What were your target complexities?
+    We designed our algorithm to have reasonable time and space complexity. We did not have a target 
+    complexity in mind at first, but just tried to make smart choices in our algorithm that does not 
+    increase complexity unnecessarily. In the end, I believe our algorithm was more optimized for space, 
+    notably when comapred to a trie approach.
+
+    If you designed your algorithm for a low space complexity,
+    Were you able to achieve a low time complexity as well?
+    Why or why not?
+        We were able to get our algorithm to run relatively fast with decent time complexity, but it is 
+        still much slower than storing a prefix tree. However storing the prefix tree would require 
+        higher space complexity. In the end, it is a tradeoff; we cannot have the excellent time 
+        complexity of a prefix tree without dealing with the space taken by one. 
+*/
 
 bool parseLine(string &line, string &movieName, double &movieRating) {
     int commaIndex = line.find_last_of(",");
